@@ -1,0 +1,31 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Графік 1: f(x)
+x = np.linspace(0, 24, 1000)
+y = 50 + 20*np.sin(np.pi*x/12) + 5*np.exp(-0.2*(x-12)**2)
+plt.figure(figsize=(12, 5))
+plt.plot(x, y, 'b-', linewidth=2)
+plt.fill_between(x, 0, y, alpha=0.2)
+plt.xlabel('x')
+plt.ylabel('f(x)')
+plt.title('Навантаження на сервер f(x)')
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.savefig('function.png', dpi=300)
+plt.close()
+
+# Графік 2: epsilon(N)
+data = np.loadtxt('epsilon_N.txt')
+plt.figure(figsize=(10, 6))
+plt.loglog(data[:, 0], data[:, 1], 'b-', linewidth=2)
+plt.xlabel('N')
+plt.ylabel('ε(N)')
+plt.title('Залежність похибки від N (Сімпсон)')
+plt.grid(True, which='both', alpha=0.3)
+plt.tight_layout()
+plt.savefig('epsilon_N.png', dpi=300)
+plt.close()
+
+print('Графіки: function.png, epsilon_N.png')
+plt.show()
